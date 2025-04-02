@@ -3,7 +3,7 @@ name: Python Hello World and Send Email
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   run-and-notify:
@@ -19,7 +19,6 @@ jobs:
         python-version: '3.x'
 
     - name: Run Hello World script
-      id: run_script
       run: python hello.py
 
     - name: Send success email
@@ -35,7 +34,7 @@ jobs:
           The Python script has been executed successfully.
           Here is the output:
           $(python hello.py)
-        to: recipient@example.com
+        to: kishorek1009@yahoo.com
         from: ${{ secrets.MAIL_USERNAME }}
 
     - name: Send failure email
@@ -49,5 +48,5 @@ jobs:
         subject: GitHub Actions Notification - Failure
         body: |
           The Python script failed to execute.
-        to: recipient@example.com
+        to: kishorek1009@yahoo.com
         from: ${{ secrets.MAIL_USERNAME }}
