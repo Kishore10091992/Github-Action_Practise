@@ -1,0 +1,53 @@
+name: Python Hello World and Send Email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run Hello World script
+      id: run_script
+      run: python hello.py
+
+    - name: Send success email
+      if: ${{ success() }}
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: GitHub Actions Notification - Success
+        body: |
+          The Python script has been executed successfully.
+          Here is the output:
+          $(python hello.py)
+        to: recipient@example.com
+        from: ${{ secrets.MAIL_USERNAME }}
+
+    - name: Send failure email
+      if: ${{ failure() }}
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: GitHub Actions Notification - Failure
+        body: |
+          The Python script failed to execute.
+        to: recipient@example.com
+        from: ${{ secrets.MAIL_USERNAME }}
