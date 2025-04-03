@@ -1,5 +1,6 @@
-How to Run GitHub Actions on a Schedule
-https://jackharner.com/blog/github-actions-cron/#scheduling-your-github-action
+How to Schedule Workflows in GitHub Actions - https://cicube.io/blog/github-actions-cron/
+
+How to Run GitHub Actions on a Schedule - https://jackharner.com/blog/github-actions-cron/#scheduling-your-github-action
 
 Cron takes in a string to determine which minutes, hours, days, & months to run your script on.
 
