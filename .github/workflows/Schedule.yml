@@ -1,7 +1,7 @@
 name: Testing_Schedule
 on:
     schedule:
-      - cron: '01 * * * *'
+      - cron: '* * * * *'
   
 jobs:
     cron-job:
