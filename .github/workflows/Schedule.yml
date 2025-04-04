@@ -1,1 +1,21 @@
+name: Testing_Schedule
+ on:
+    schedule:
+      - cron: '* * * * *'
+  
+      jobs:
+        cron-job:
+        rubs-on: ubuntu-latest
 
+        steps:
+        - name: checkout code
+          user: action/checkout@v2
+
+        - name: setup-python
+          user: action/setup-python@v2
+          
+          with:
+                python-version: '3.13'
+
+        -name: Run-python
+         run: python hello.py
