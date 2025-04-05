@@ -1,0 +1,18 @@
+name: Hello world using py
+on: push
+
+jobs:
+  helloworld:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: check code
+      uses: actions/checkout@v2
+
+    - name: setup-python
+      uses: actions/setup-python@v3
+      with:
+          python-version: '3.13'
+
+    - name: Run PY script
+      run: python Hello World.py
